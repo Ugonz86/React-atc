@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Company from './Company';
 import PropTypes from 'prop-types';
+// import { v4 } from 'uuid';
 
-function CompanyList(props){
-    
-
+const CompanyList = (props) => {
+     
   return (
     <div>
       <hr/>
@@ -21,12 +21,15 @@ function CompanyList(props){
           onCompanySelection={props.onCompanySelection}/>;
           
       })}
+      
       <Link to='/NewCompany'>Create new company</Link>
      
     </div>
+    
   );
   
-}
+};
+
 
 CompanyList.propTypes = {
   companyList: PropTypes.array,

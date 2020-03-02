@@ -7,13 +7,14 @@ import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import Header from '../Home/Header';
 import Home from '../Home/Home';
-import {  NewCompanyControl }  from '../Home/NewCompanyControl';
-import { CompanyList } from '../Home/CompanyList';
+// import NewCompanyControl from '../Home/NewCompanyControl';
+import CompanyList from '../Home/CompanyList';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { v4 } from 'uuid';
 
 class App extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -29,35 +30,35 @@ class App extends React.Component {
     name:'Seattle Light',
     utility:'Electricity',
     contact:'www.seattle.com',
-    timeAdded:''
+    
   };
   newCompanyId = v4();
   newMasterCompanyList[newCompanyId] = {
     name:'Seattle Water',
     utility:'Water',
     contact:'www.seattle.com',
-    timeAdded:''
+   
   };
   newCompanyId = v4();
   newMasterCompanyList[newCompanyId] = {
     name:'Seattle Farm',
     utility:'Insurance',
     contact:'www.seattle.com',
-    timeAdded:''
+    
   };
   newCompanyId = v4();
   newMasterCompanyList[newCompanyId] = {
     name:'Seattle Auto',
     utility:'Car Dealer',
     contact:'www.seattle.com',
-    timeAdded:''
+    
   };
   newCompanyId = v4();
   newMasterCompanyList[newCompanyId] = {
     name:'Seattle Fi',
     utility:'Internet',
     contact:'www.seattle.com',
-    timeAdded:''
+  
   };
 
   this.state = {
@@ -68,31 +69,31 @@ class App extends React.Component {
   this.handleChangingSelectedCompany = this.handleChangingSelectedCompany.bind(this);
 }
 
-componentDidMount() {
-  this.waitTimeUpdateTimer = setInterval(() =>
-    this.updateCompanyElapsedWaitTime(),
-  5000
-  );
-}
+// componentDidMount() {
+//   this.waitTimeUpdateTimer = setInterval(() =>
+//     this.updateCompanyElapsedWaitTime(),
+//   5000
+//   );
+// }
 
-componentWillUnmount(){
-  clearInterval(this.waitTimeUpdateTimer);
-}
+// componentWillUnmount(){
+//   clearInterval(this.waitTimeUpdateTimer);
+// }
 
-updateCompanyElapsedWaitTime() {
-  var newMasterCompanyList = Object.assign({}, this.state.masterCompanyList);
-  Object.keys(newMasterCompanyList).forEach(companyId => {
-    newMasterCompanyList[companyId].formattedWaitTime = (newMasterCompanyList[companyId].timeOpen).fromNow(true);
-  });
-  this.setState({masterCompanyList: newMasterCompanyList});
-}
+// updateCompanyElapsedWaitTime() {
+//   var newMasterCompanyList = Object.assign({}, this.state.masterCompanyList);
+//   Object.keys(newMasterCompanyList).forEach(companyId => {
+//     newMasterCompanyList[companyId].formattedWaitTime = (newMasterCompanyList[companyId])(true);
+//   });
+//   this.setState({masterCompanyList: newMasterCompanyList});
+// }
 
 handleAddingNewCompanyToList(newCompany){
   var newCompanyId = v4();
   var newMasterCompanyList = Object.assign({}, this.state.masterCompanyList, {
     [newCompanyId]: newCompany
   });
-  newMasterCompanyList[newCompanyId].formattedWaitTime = newMasterCompanyList[newCompanyId].timeOpen.fromNow(true);
+  newMasterCompanyList[newCompanyId].formattedWaitTime = newMasterCompanyList[newCompanyId](true);
   this.setState({masterCompanyList: newMasterCompanyList});
 }
 
@@ -117,8 +118,9 @@ handleChangingSelectedCompany(companyId){
                 <Header/>
                 <Route path="/Home" component={Home} />
                 <Route path='/NewCompany' render={()=><NewCompanyControl onNewCompanyCreation={this.handleAddingNewCompanyToList} />} />
-                <Route path='/CompanyList' render={()=><CompanyList companyList={this.state.masterCompanyList} onCompanySelection={this.handleChangingSelectedCompany}
-            selectedCompany={this.state.selectedCompany}/>} />
+                {/* <Route path='/CompanyList' render={()=><CompanyList companyList={this.state.masterCompanyList} onCompanySelection={this.handleChangingSelectedCompany}
+            selectedCompany={this.state.selectedCompany}/>} /> */}
+                <Route path='/CompanyList' render={(props)=><CompanyList companyList={this.state.masterCompanyList} />} />
                 <Redirect from="*" to="Home" />
               </Switch>
             </Router>

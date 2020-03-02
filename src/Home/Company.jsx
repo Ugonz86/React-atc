@@ -9,7 +9,7 @@ function Company(props){
     <div>
       <h4>{props.utility}</h4>
       <h4><em>{props.contact}</em></h4>
-      <h5>{props.formattedWaitTime}</h5>
+      {/* <h5>{props.formattedWaitTime}</h5> */}
     </div>;
   return (
     <div onClick={() => {props.onCompanySelection(props.companyId);}}>
