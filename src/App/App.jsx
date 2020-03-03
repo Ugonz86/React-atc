@@ -8,7 +8,7 @@ import { HomePage } from '../HomePage';
 import Header from '../Home/Header';
 import Home from '../Home/Home';
 // import NewCompanyControl from '../Home/NewCompanyControl';
-import CompanyList from '../Home/CompanyList';
+// import CompanyList from '../Home/CompanyList';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { v4 } from 'uuid';
@@ -117,10 +117,10 @@ handleChangingSelectedCompany(companyId){
                 <Route path="/register" component={RegisterPage} />
                 <Header/>
                 <Route path="/Home" component={Home} />
-                <Route path='/NewCompany' render={()=><NewCompanyControl onNewCompanyCreation={this.handleAddingNewCompanyToList} />} />
+                {/* <Route path="/NewCompany" render={()=><NewCompanyControl onNewCompanyCreation={this.handleAddingNewCompanyToList} />} /> */}
                 {/* <Route path='/CompanyList' render={()=><CompanyList companyList={this.state.masterCompanyList} onCompanySelection={this.handleChangingSelectedCompany}
             selectedCompany={this.state.selectedCompany}/>} /> */}
-                <Route path='/CompanyList' render={(props)=><CompanyList companyList={this.state.masterCompanyList} />} />
+                {/* <Route path="/CompanyList" render={(props)=><CompanyList companyList={this.state.masterCompanyList} />} /> */}
                 <Redirect from="*" to="Home" />
               </Switch>
             </Router>
